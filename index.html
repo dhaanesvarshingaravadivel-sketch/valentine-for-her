@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For My Shalini ❤️</title>
 
     <!-- Fonts -->
@@ -137,7 +139,7 @@
 
 <!-- Intro -->
 <div class="intro">
-    <h1>For My Beautiful Princess Shalini 🌹</h1>
+    <h1>For My Beautiful Shalini 🌹</h1>
     <p style="opacity:0.8;">Close your eyes… feel the music…</p>
 </div>
 
@@ -181,7 +183,7 @@
 </div>
 
 <script>
-// No button moves
+// Move "No" button
 const noBtn = document.getElementById("noBtn");
 noBtn.addEventListener("mouseover", function(){
     const x = Math.random() * (window.innerWidth - 100);
@@ -190,15 +192,14 @@ noBtn.addEventListener("mouseover", function(){
     noBtn.style.top = y + "px";
 });
 
-// Texts for typewriter (letter by letter)
+// Typewriter letter by letter
 const texts = {
     2: `Shalini, my love… if I’ve ever hurt you in any way, please know it was never my intention. Every thought of you fills me with warmth and joy, and the last thing I want is to ever make you feel pain. Your happiness is my heartbeat, your smile is my sunshine. I’m deeply sorry for any mistakes I’ve made, and I promise to cherish you, adore you, and hold your heart with the utmost care forever. You are my most precious treasure, my every heartbeat, my infinite love, and I want to spend all my tomorrows making you feel loved, safe, and cherished in every possible way.`,
     3: `Shalini… from the first moment I saw you, I felt a pull toward your soul, a connection deeper than words. Every inch of you, every heartbeat, every thought, fills me with a love so profound it cannot be contained. I love your smile, your laughter, the way your eyes light up, the way your heart beats so beautifully. I love your mind, your spirit, your kindness, and your strength. Every fiber of my being, every inch of my heart, is devoted to loving you endlessly, fiercely, and completely. You are my home, my peace, my desire, my universe. My love for you knows no boundaries. Every second with you is a memory, every touch is sacred, every moment is eternity. You are the rhythm of my heart, the fire of my soul, and I will love you in every lifetime, in every universe, forever and always.`,
     4: `Shalini, you are without a doubt the most incredible person I have ever known. You are the best part of my life, the most beautiful gift, and the greatest love I could ever dream of. Every day with you is a blessing, every smile of yours is a treasure, and every moment feels like a scene from a dream. Your love has transformed me, filled me with purpose, and shown me what true happiness is. You are my inspiration, my muse, my everything. Loving you is the most natural, most extraordinary, and most breathtaking experience of my life. I will honor you, cherish you, and adore you with every heartbeat, every thought, and every breath. You are my forever, my eternity, my one true love. Always. Only you.`
 };
 
-// Letter-by-letter typewriter
-function typeWriterLetter(el,text,callback){
+function typeWriterLetter(el,text){
     el.innerHTML='';
     let i=0;
     function typing(){
@@ -206,21 +207,20 @@ function typeWriterLetter(el,text,callback){
             el.innerHTML+=text.charAt(i);
             i++;
             setTimeout(typing,30);
-        } else if(callback){ callback(); }
+        }
     }
     typing();
 }
 
-// Page navigation with fade/zoom
+// Page navigation
 function nextPage(pageNum){
     for(let i=1;i<=5;i++){
-        const p=document.getElementById("page"+i);
-        p.classList.remove("active");
+        document.getElementById("page"+i).classList.remove("active");
     }
     const page=document.getElementById("page"+pageNum);
     page.classList.add("active");
 
-    // Play music on first user interaction (iOS fix)
+    // Play music on first user interaction
     const music = document.getElementById("bgMusic");
     if(pageNum===2) music.play();
 
@@ -229,8 +229,7 @@ function nextPage(pageNum){
     }
 }
 
-// Floating effects
-const music = document.getElementById("bgMusic");
+// Floating hearts, roses, sparkles
 setInterval(createRose,400);
 setInterval(createSparkle,250);
 setInterval(createHeart,600);
