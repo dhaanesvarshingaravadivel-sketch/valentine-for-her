@@ -65,7 +65,7 @@
         @keyframes fadeOut { to {opacity:0; visibility:hidden;} }
         @keyframes glow { from {text-shadow:0 0 10px #fff;} to {text-shadow:0 0 40px #ff99cc;} }
 
-        /* Page containers */
+        /* Pages */
         .page {
             display:none;
             position:relative;
@@ -73,7 +73,6 @@
             max-width:1000px;
             margin-left:auto;
             margin-right:auto;
-            animation: fadeIn 2s ease-in-out;
         }
 
         .active { display:block; }
@@ -114,79 +113,57 @@
 
         @keyframes float { 0% {transform:translateY(100vh);} 100% {transform:translateY(-10vh);} }
 
-        @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
     </style>
 </head>
-
 <body>
 
-<!-- Intro Screen -->
+<!-- Intro -->
 <div class="intro">
     <h1>For My Beautiful Shalini 🌹</h1>
     <p style="opacity:0.8;">Close your eyes… feel the music…</p>
 </div>
 
-<!-- Background Music -->
+<!-- Music -->
 <audio id="bgMusic" loop>
     <source src="romantic.mp3" type="audio/mp3">
 </audio>
 
-<!-- Page 1: Valentine Proposal -->
+<!-- Page 1 -->
 <div id="page1" class="page active">
     <h1 class="page-title">Shalini ❤️<br>Will You Be My Valentine?</h1>
     <button class="yes-btn" onclick="nextPage(2)">Yes 💍</button>
     <button class="no-btn" id="noBtn">No 😅</button>
 </div>
 
-<!-- Page 2: Sorry Page -->
+<!-- Page 2: Sorry -->
 <div id="page2" class="page">
     <h1 class="page-title">I’m Sorry 🌸</h1>
-    <p>
-        Shalini, my love… if I’ve ever hurt you in any way, please know it was never my intention.  
-        Every thought of you fills me with warmth and joy, and the last thing I want is to ever make you feel pain.  
-        Your happiness is my heartbeat, your smile is my sunshine.  
-        I’m deeply sorry for any mistakes I’ve made, and I promise to cherish you, adore you, and hold your heart with the utmost care forever.
-        <br><br>
-        You are my most precious treasure, my every heartbeat, my infinite love, and I want to spend all my tomorrows making you feel loved, safe, and cherished in every possible way.
-    </p>
+    <p id="text2"></p>
     <button class="yes-btn" onclick="nextPage(3)">I Forgive You ❤️</button>
 </div>
 
-<!-- Page 3: Deep Love Page -->
+<!-- Page 3: Deep Love -->
 <div id="page3" class="page">
-    <h1 class="page-title">My Deep Love For You ❤️</h1>
-    <p>
-        Shalini… from the first moment I saw you, I felt a pull toward your soul, a connection deeper than words.  
-        Every inch of you, every heartbeat, every thought, fills me with a love so profound it cannot be contained.  
-        I love your smile, your laughter, the way your eyes light up, the way your heart beats so beautifully.  
-        I love your mind, your spirit, your kindness, and your strength.  
-        Every fiber of my being, every inch of my heart, is devoted to loving you endlessly, fiercely, and completely.  
-        You are my home, my peace, my desire, my universe.  
-        My love for you knows no boundaries. Every second with you is a memory, every touch is sacred, every moment is eternity.  
-        You are the rhythm of my heart, the fire of my soul, and I will love you in every lifetime, in every universe, forever and always.
-    </p>
+    <h1 class="page-title">My Deep Love ❤️</h1>
+    <p id="text3"></p>
     <button class="yes-btn" onclick="nextPage(4)">Next ❤️</button>
 </div>
 
 <!-- Page 4: Best I Ever Have -->
 <div id="page4" class="page">
     <h1 class="page-title">The Best I Ever Have 🌹</h1>
-    <p>
-        Shalini, you are without a doubt the most incredible person I have ever known.  
-        You are the best part of my life, the most beautiful gift, and the greatest love I could ever dream of.  
-        Every day with you is a blessing, every smile of yours is a treasure, and every moment feels like a scene from a dream.  
-        Your love has transformed me, filled me with purpose, and shown me what true happiness is.  
-        You are my inspiration, my muse, my everything.  
-        Loving you is the most natural, most extraordinary, and most breathtaking experience of my life.  
-        I will honor you, cherish you, and adore you with every heartbeat, every thought, and every breath.  
-        You are my forever, my eternity, my one true love.  
-        Always. Only you.
-    </p>
+    <p id="text4"></p>
+    <button class="yes-btn" onclick="nextPage(5)">Final ❤️</button>
+</div>
+
+<!-- Page 5: Exit -->
+<div id="page5" class="page">
+    <h1 class="page-title">I Love You 💖</h1>
+    <p style="font-size:24px;">Call me now! ☎️❤️</p>
 </div>
 
 <script>
 const noBtn = document.getElementById("noBtn");
-
 noBtn.addEventListener("mouseover", function(){
     const x = Math.random() * (window.innerWidth - 100);
     const y = Math.random() * (window.innerHeight - 50);
@@ -194,25 +171,51 @@ noBtn.addEventListener("mouseover", function(){
     noBtn.style.top = y + "px";
 });
 
-// Function to switch pages
-function nextPage(pageNum){
-    // Hide all pages
-    for(let i=1;i<=4;i++){
-        document.getElementById("page"+i).classList.remove("active");
-    }
-    // Show next page
-    document.getElementById("page"+pageNum).classList.add("active");
+// Typewriter text (word by word)
+const texts = {
+    2: `Shalini, my love… if I’ve ever hurt you in any way, please know it was never my intention. Every thought of you fills me with warmth and joy, and the last thing I want is to ever make you feel pain. Your happiness is my heartbeat, your smile is my sunshine. I’m deeply sorry for any mistakes I’ve made, and I promise to cherish you, adore you, and hold your heart with the utmost care forever. You are my most precious treasure, my every heartbeat, my infinite love, and I want to spend all my tomorrows making you feel loved, safe, and cherished in every possible way.`,
+
+    3: `Shalini… from the first moment I saw you, I felt a pull toward your soul, a connection deeper than words. Every inch of you, every heartbeat, every thought, fills me with a love so profound it cannot be contained. I love your smile, your laughter, the way your eyes light up, the way your heart beats so beautifully. I love your mind, your spirit, your kindness, and your strength. Every fiber of my being, every inch of my heart, is devoted to loving you endlessly, fiercely, and completely. You are my home, my peace, my desire, my universe. My love for you knows no boundaries. Every second with you is a memory, every touch is sacred, every moment is eternity. You are the rhythm of my heart, the fire of my soul, and I will love you in every lifetime, in every universe, forever and always.`,
+
+    4: `Shalini, you are without a doubt the most incredible person I have ever known. You are the best part of my life, the most beautiful gift, and the greatest love I could ever dream of. Every day with you is a blessing, every smile of yours is a treasure, and every moment feels like a scene from a dream. Your love has transformed me, filled me with purpose, and shown me what true happiness is. You are my inspiration, my muse, my everything. Loving you is the most natural, most extraordinary, and most breathtaking experience of my life. I will honor you, cherish you, and adore you with every heartbeat, every thought, and every breath. You are my forever, my eternity, my one true love. Always. Only you.`
 }
 
-// Typewriter and floating effects
-document.getElementById("bgMusic").play();
+// Word-by-word typewriter
+function typeWriterWord(el,text,callback){
+    el.innerHTML='';
+    let words=text.split(' ');
+    let i=0;
+    function type(){
+        if(i<words.length){
+            el.innerHTML+=words[i]+' ';
+            i++;
+            setTimeout(type,250); // Adjust speed here
+        } else if(callback){ callback(); }
+    }
+    type();
+}
 
+// Page navigation
+function nextPage(pageNum){
+    for(let i=1;i<=5;i++){
+        document.getElementById("page"+i).classList.remove("active");
+    }
+    const page=document.getElementById("page"+pageNum);
+    page.classList.add("active");
+    if(texts[pageNum]){
+        typeWriterWord(document.getElementById('text'+pageNum), texts[pageNum]);
+    }
+}
+
+// Floating effects
+const music = document.getElementById("bgMusic");
+music.play();
 setInterval(createRose,400);
 setInterval(createSparkle,250);
 setInterval(createHeart,600);
 
 function createRose(){
-    const rose = document.createElement("div");
+    const rose=document.createElement("div");
     rose.classList.add("rose");
     rose.innerHTML="🌹";
     rose.style.left=Math.random()*window.innerWidth+"px";
@@ -222,7 +225,7 @@ function createRose(){
 }
 
 function createSparkle(){
-    const sparkle = document.createElement("div");
+    const sparkle=document.createElement("div");
     sparkle.classList.add("sparkle");
     sparkle.innerHTML="✨";
     sparkle.style.left=Math.random()*window.innerWidth+"px";
@@ -232,7 +235,7 @@ function createSparkle(){
 }
 
 function createHeart(){
-    const heart = document.createElement("div");
+    const heart=document.createElement("div");
     heart.classList.add("heart");
     heart.innerHTML="❤️";
     heart.style.left=Math.random()*window.innerWidth+"px";
