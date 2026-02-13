@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For My Love ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            font-family: 'Segoe UI', sans-serif;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            margin-top: 18%;
+        }
+
+        h1 {
+            font-size: 55px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        p {
+            font-size: 22px;
+            margin-top: 20px;
+            animation: fadeIn 4s ease-in-out;
+        }
+
+        button {
+            margin-top: 30px;
+            padding: 15px 35px;
+            font-size: 18px;
+            background: white;
+            color: #ff416c;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: pink;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .heart {
+            position: absolute;
+            color: white;
+            animation: float 6s linear infinite;
+        }
+
+        @keyframes float {
+            0% {transform: translateY(0);}
+            100% {transform: translateY(-100vh);}
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Happy Valentine's Day ❤️</h1>
+    <p>
+        To the most special girl in my life,<br>
+        You are my happiness, my peace, and my forever 💕
+    </p>
+    <button onclick="showLove()">Click Here ❤️</button>
+</div>
+
+<script>
+function showLove() {
+    alert("I love you endlessly 💖 Will you be mine forever?");
+}
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.fontSize = (Math.random() * 25 + 15) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
