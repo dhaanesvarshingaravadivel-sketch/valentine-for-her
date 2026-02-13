@@ -1,48 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>For My Love ❤️</title>
+    <title>For Shalini ❤️</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
     <style>
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(to right, #ff416c, #ff4b2b);
-            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+            background-size: 400% 400%;
+            animation: gradientMove 12s ease infinite;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
             color: white;
             overflow: hidden;
         }
 
+        @keyframes gradientMove {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
         .container {
-            margin-top: 18%;
+            margin-top: 15%;
+            position: relative;
+            z-index: 10;
         }
 
         h1 {
-            font-size: 55px;
+            font-family: 'Playfair Display', serif;
+            font-size: 50px;
+            margin-bottom: 20px;
             animation: fadeIn 2s ease-in-out;
         }
 
         p {
-            font-size: 22px;
-            margin-top: 20px;
-            animation: fadeIn 4s ease-in-out;
+            font-size: 20px;
+            max-width: 800px;
+            margin: auto;
+            line-height: 1.6;
         }
 
         button {
-            margin-top: 30px;
-            padding: 15px 35px;
+            margin: 20px;
+            padding: 15px 40px;
             font-size: 18px;
-            background: white;
-            color: #ff416c;
-            border: none;
             border-radius: 30px;
+            border: none;
             cursor: pointer;
             transition: 0.3s;
         }
 
-        button:hover {
-            background: pink;
+        .yes-btn {
+            background: white;
+            color: #ff4b7d;
+        }
+
+        .yes-btn:hover {
+            background: #ff4b7d;
             color: white;
+        }
+
+        .no-btn {
+            background: #333;
+            color: white;
+            position: absolute;
+        }
+
+        .love-message {
+            display: none;
+            animation: fadeIn 2s ease-in-out;
         }
 
         @keyframes fadeIn {
@@ -50,48 +82,74 @@
             to {opacity: 1;}
         }
 
-        .heart {
+        .flower {
             position: absolute;
-            color: white;
-            animation: float 6s linear infinite;
+            font-size: 30px;
+            animation: float 10s linear infinite;
         }
 
         @keyframes float {
-            0% {transform: translateY(0);}
-            100% {transform: translateY(-100vh);}
+            0% {transform: translateY(100vh);}
+            100% {transform: translateY(-10vh);}
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Happy Valentine's Day ❤️</h1>
+<div class="container" id="question">
+    <h1>Shalini ❤️<br>Will You Be My Valentine?</h1>
+    <button class="yes-btn" onclick="showLove()">Yes 💖</button>
+    <button class="no-btn" id="noBtn">No 😅</button>
+</div>
+
+<div class="container love-message" id="loveMessage">
+    <h1>My Beautiful Shalini 🌸</h1>
     <p>
-        To the most special girl in my life,<br>
-        You are my happiness, my peace, and my forever 💕
+        From the moment you walked into my life, everything changed in the most beautiful way.
+        You are not just someone I love — you are my peace, my happiness, and the calm in my chaos.
+        Every smile of yours feels like sunlight after rain. Every conversation with you feels like
+        home. With you, love feels safe, deep, and real.
+
+        I don’t just love you for who you are — I love the way you make me want to be better,
+        stronger, and more caring. Our connection is something rare and powerful.
+        It’s not just attraction, it’s understanding. It’s not just romance, it’s soul connection.
+
+        If I had to choose again, in every lifetime, in every universe,
+        I would still choose you, Shalini.
+        Today, tomorrow, and always — my heart belongs to you. ❤️🌹
     </p>
-    <button onclick="showLove()">Click Here ❤️</button>
 </div>
 
 <script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
 function showLove() {
-    alert("I love you endlessly 💖 Will you be mine forever?");
+    document.getElementById("question").style.display = "none";
+    document.getElementById("loveMessage").style.display = "block";
 }
 
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "❤";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.fontSize = (Math.random() * 25 + 15) + "px";
-    document.body.appendChild(heart);
+function createFlower() {
+    const flower = document.createElement("div");
+    flower.classList.add("flower");
+    flower.innerHTML = "🌸";
+    flower.style.left = Math.random() * window.innerWidth + "px";
+    flower.style.fontSize = (Math.random() * 20 + 20) + "px";
+    document.body.appendChild(flower);
 
     setTimeout(() => {
-        heart.remove();
-    }, 6000);
+        flower.remove();
+    }, 10000);
 }
 
-setInterval(createHeart, 300);
+setInterval(createFlower, 500);
 </script>
 
 </body>
