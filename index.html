@@ -73,9 +73,16 @@
             max-width:1000px;
             margin-left:auto;
             margin-right:auto;
+            opacity:0;
+            transform: scale(0.95);
+            transition: opacity 1s ease, transform 1s ease;
         }
 
-        .active { display:block; }
+        .active {
+            display:block;
+            opacity:1;
+            transform: scale(1);
+        }
 
         h1.page-title {
             font-family:'Great Vibes', cursive;
@@ -198,19 +205,25 @@ function typeWriterLetter(el,text,callback){
         if(i<text.length){
             el.innerHTML+=text.charAt(i);
             i++;
-            setTimeout(typing,30); // adjust speed
+            setTimeout(typing,30);
         } else if(callback){ callback(); }
     }
     typing();
 }
 
-// Page navigation
+// Page navigation with fade/zoom
 function nextPage(pageNum){
     for(let i=1;i<=5;i++){
-        document.getElementById("page"+i).classList.remove("active");
+        const p=document.getElementById("page"+i);
+        p.classList.remove("active");
     }
     const page=document.getElementById("page"+pageNum);
     page.classList.add("active");
+
+    // Play music on first user interaction (iOS fix)
+    const music = document.getElementById("bgMusic");
+    if(pageNum===2) music.play();
+
     if(texts[pageNum]){
         typeWriterLetter(document.getElementById('text'+pageNum), texts[pageNum]);
     }
@@ -218,7 +231,6 @@ function nextPage(pageNum){
 
 // Floating effects
 const music = document.getElementById("bgMusic");
-music.play();
 setInterval(createRose,400);
 setInterval(createSparkle,250);
 setInterval(createHeart,600);
