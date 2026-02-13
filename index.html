@@ -12,9 +12,9 @@
             padding:0;
             overflow:hidden;
             font-family:'Poppins',sans-serif;
-            background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #ff758c);
+            background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
             background-size: 400% 400%;
-            animation: gradient 20s ease infinite;
+            animation: gradient 25s ease infinite;
             color:white;
             text-align:center;
         }
@@ -31,7 +31,7 @@
             position:absolute;
             width:100%;
             height:100%;
-            background:radial-gradient(circle,rgba(255,255,255,0.15) 1px,transparent 1px);
+            background:radial-gradient(circle,rgba(255,255,255,0.2) 1px,transparent 1px);
             background-size:3px 3px;
             animation: moveStars 80s linear infinite;
             pointer-events:none;
@@ -63,7 +63,7 @@
         }
 
         @keyframes fadeOut { to {opacity:0; visibility:hidden;} }
-        @keyframes glow { from {text-shadow:0 0 10px #fff;} to {text-shadow:0 0 40px #ff99cc;} }
+        @keyframes glow { from {text-shadow:0 0 10px #fff;} to {text-shadow:0 0 40px #ff9acc;} }
 
         /* Pages */
         .page {
@@ -102,7 +102,7 @@
         }
 
         .yes-btn { background:white; color:#ff4b7d; }
-        .yes-btn:hover { background:#ff4b7d; color:white; box-shadow:0 0 20px #ff99cc; }
+        .yes-btn:hover { background:#ff4b7d; color:white; box-shadow:0 0 20px #ff9acc; }
         .no-btn { background:black; color:white; position:absolute; }
 
         /* Floating elements */
@@ -113,6 +113,17 @@
 
         @keyframes float { 0% {transform:translateY(100vh);} 100% {transform:translateY(-10vh);} }
 
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            h1.page-title { font-size: 45px; }
+            p { font-size: 18px; padding: 0 15px; }
+            button { padding:20px 50px; font-size:20px; }
+        }
+        @media (max-width: 480px) {
+            h1.page-title { font-size: 35px; }
+            p { font-size: 16px; line-height:2; }
+            button { padding:18px 40px; font-size:18px; }
+        }
     </style>
 </head>
 <body>
@@ -163,6 +174,7 @@
 </div>
 
 <script>
+// No button moves
 const noBtn = document.getElementById("noBtn");
 noBtn.addEventListener("mouseover", function(){
     const x = Math.random() * (window.innerWidth - 100);
@@ -171,28 +183,25 @@ noBtn.addEventListener("mouseover", function(){
     noBtn.style.top = y + "px";
 });
 
-// Typewriter text (word by word)
+// Texts for typewriter (letter by letter)
 const texts = {
     2: `Shalini, my love… if I’ve ever hurt you in any way, please know it was never my intention. Every thought of you fills me with warmth and joy, and the last thing I want is to ever make you feel pain. Your happiness is my heartbeat, your smile is my sunshine. I’m deeply sorry for any mistakes I’ve made, and I promise to cherish you, adore you, and hold your heart with the utmost care forever. You are my most precious treasure, my every heartbeat, my infinite love, and I want to spend all my tomorrows making you feel loved, safe, and cherished in every possible way.`,
-
     3: `Shalini… from the first moment I saw you, I felt a pull toward your soul, a connection deeper than words. Every inch of you, every heartbeat, every thought, fills me with a love so profound it cannot be contained. I love your smile, your laughter, the way your eyes light up, the way your heart beats so beautifully. I love your mind, your spirit, your kindness, and your strength. Every fiber of my being, every inch of my heart, is devoted to loving you endlessly, fiercely, and completely. You are my home, my peace, my desire, my universe. My love for you knows no boundaries. Every second with you is a memory, every touch is sacred, every moment is eternity. You are the rhythm of my heart, the fire of my soul, and I will love you in every lifetime, in every universe, forever and always.`,
-
     4: `Shalini, you are without a doubt the most incredible person I have ever known. You are the best part of my life, the most beautiful gift, and the greatest love I could ever dream of. Every day with you is a blessing, every smile of yours is a treasure, and every moment feels like a scene from a dream. Your love has transformed me, filled me with purpose, and shown me what true happiness is. You are my inspiration, my muse, my everything. Loving you is the most natural, most extraordinary, and most breathtaking experience of my life. I will honor you, cherish you, and adore you with every heartbeat, every thought, and every breath. You are my forever, my eternity, my one true love. Always. Only you.`
-}
+};
 
-// Word-by-word typewriter
-function typeWriterWord(el,text,callback){
+// Letter-by-letter typewriter
+function typeWriterLetter(el,text,callback){
     el.innerHTML='';
-    let words=text.split(' ');
     let i=0;
-    function type(){
-        if(i<words.length){
-            el.innerHTML+=words[i]+' ';
+    function typing(){
+        if(i<text.length){
+            el.innerHTML+=text.charAt(i);
             i++;
-            setTimeout(type,250); // Adjust speed here
+            setTimeout(typing,30); // adjust speed
         } else if(callback){ callback(); }
     }
-    type();
+    typing();
 }
 
 // Page navigation
@@ -203,7 +212,7 @@ function nextPage(pageNum){
     const page=document.getElementById("page"+pageNum);
     page.classList.add("active");
     if(texts[pageNum]){
-        typeWriterWord(document.getElementById('text'+pageNum), texts[pageNum]);
+        typeWriterLetter(document.getElementById('text'+pageNum), texts[pageNum]);
     }
 }
 
